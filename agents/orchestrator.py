@@ -55,7 +55,7 @@ if __name__ == '__main__':
     event = {
         'Records': [{
             's3': {
-                'bucket': {'name': 'my-code-bucket'},
+                'bucket': {'name': 'my-code-validation-bucket'},
                 'object': {'key': 'uploads/test.py'}
             }
         }]
