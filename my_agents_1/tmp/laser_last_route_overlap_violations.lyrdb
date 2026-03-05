@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report-database>
+ <description>DRC Violations</description>
+ <original-file/>
+ <generator>drc: script='/shared_workshop/my_agents/drc/photonics_drc.drc'</generator>
+ <top-cell>nazca</top-cell>
+ <tags>
+ </tags>
+ <categories>
+  <category>
+   <name>RULE1</name>
+   <description>Spacing &lt; 2.0 µm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>RULE2</name>
+   <description>Width &lt; 0.4 µm</description>
+   <categories>
+   </categories>
+  </category>
+ </categories>
+ <cells>
+  <cell>
+   <name>nazca</name>
+   <variant/>
+   <references>
+   </references>
+  </cell>
+ </cells>
+ <items>
+  <item>
+   <tags/>
+   <category>RULE1</category>
+   <cell>nazca</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (920.618,179.988;920.618,180.019)|(918.618,180.053;920.545,179.99)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>RULE1</category>
+   <cell>nazca</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (1215.747,170;1215.747,179.765)|(1215.618,180.019;1215.618,170)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>RULE1</category>
+   <cell>nazca</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (897,156.703;895,158.156)|(895,158.156;895,155.684)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>RULE1</category>
+   <cell>nazca</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (920.618,170;920.618,180.019)|(920.545,179.99;920.545,170)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>RULE1</category>
+   <cell>nazca</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (880.836,170;883.308,170)|(883.308,170;881.855,172)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>RULE2</category>
+   <cell>nazca</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (1215.747,179.365;1215.747,179.765)|(1215.747,179.765;1216.147,179.755)</value>
+   </values>
+  </item>
+ </items>
+</report-database>

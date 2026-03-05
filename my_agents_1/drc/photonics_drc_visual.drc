@@ -1,0 +1,27 @@
+# KLayout DRC Script - Visual Output
+
+source($input, $topcell)
+
+# Report setup
+report("DRC Violations", $report)
+
+# Check all layers
+all_shapes = nil
+[1, 2, 5, 10, 20, 21].each do |l|
+  [0, 10].each do |d|
+    layer = input(l, d)
+    next if layer.is_empty?
+    all_shapes = all_shapes ? all_shapes + layer : layer
+  end
+end
+
+if all_shapes
+  # Rule 1: Minimum spacing (2.0 µm)
+  all_shapes.space(2.0).output("RULE1", "Spacing < 2.0 µm")
+  
+  # Rule 2: Minimum width (0.4 µm)  
+  all_shapes.width(0.4).output("RULE2", "Width < 0.4 µm")
+  
+  # Rule 3: Overlaps
+  all_shapes.sized(0.001).merged(2).output("RULE3", "Overlapping structures")
+end

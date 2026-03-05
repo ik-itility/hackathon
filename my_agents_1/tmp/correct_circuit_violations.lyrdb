@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report-database>
+ <description>DRC Violations</description>
+ <original-file/>
+ <generator>drc: script='/shared_workshop/my_agents/drc/photonics_drc.drc'</generator>
+ <top-cell>nazca</top-cell>
+ <tags>
+ </tags>
+ <categories>
+  <category>
+   <name>RULE1</name>
+   <description>Spacing &lt; 2.0 µm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>RULE2</name>
+   <description>Width &lt; 0.4 µm</description>
+   <categories>
+   </categories>
+  </category>
+ </categories>
+ <cells>
+  <cell>
+   <name>nazca</name>
+   <variant/>
+   <references>
+   </references>
+  </cell>
+ </cells>
+ <items>
+  <item>
+   <tags/>
+   <category>RULE1</category>
+   <cell>nazca</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (1582,-9.609;1580,-9.6)|(1580,-9.6;1580,-11.6)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>RULE2</category>
+   <cell>nazca</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (1728.068,-51.932;1727.785,-52.215)|(1727.784,-51.65;1728.068,-51.932)</value>
+   </values>
+  </item>
+ </items>
+</report-database>
