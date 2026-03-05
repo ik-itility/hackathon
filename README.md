@@ -10,7 +10,7 @@ This workshop demonstrates how specialized agents collaborate to handle equipmen
 - **Maintenance Planner Agent**: Creates maintenance work orders with appropriate priority levels
 - **Orchestrator Agent**: Coordinates workflow between the two specialized agents
 
-## Simulated Factory: Octanksson Turbines 
+## Simulated Factory: Octanksson Turbines ff
 
 The system simulates a wind turbine manufacturing facility with multiple production lines and work centers.
 
