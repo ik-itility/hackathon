@@ -1,0 +1,26 @@
+# Example KLayout DRC Script for Photonics IC
+# This is a simplified example - use your foundry's actual DRC deck
+
+# Get input parameters
+input_file = $input
+report_file = $report
+
+# Load the layout
+source(input_file)
+
+# Define layers (example)
+wg = input(1, 0)  # Waveguide layer
+
+# DRC Rules
+
+# WG.W1: Minimum waveguide width
+wg.width(0.4, angle_limit(80)).output("WG.W1", "Waveguide width < 0.4 µm")
+
+# WG.S1: Minimum waveguide spacing
+wg.space(2.0).output("WG.S1", "Waveguide spacing < 2.0 µm")
+
+# WG.E1: Minimum waveguide enclosure
+wg.enclosing(wg, 0.5).output("WG.E1", "Waveguide enclosure < 0.5 µm")
+
+# Generate report
+report("DRC Report", report_file)

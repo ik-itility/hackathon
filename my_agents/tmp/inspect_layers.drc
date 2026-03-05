@@ -1,0 +1,11 @@
+source($input)
+
+# Print all layers
+(0..200).each do |l|
+  (0..10).each do |d|
+    layer = input(l, d)
+    unless layer.is_empty?
+      puts "Found layer: #{l}/#{d}"
+    end
+  end
+end

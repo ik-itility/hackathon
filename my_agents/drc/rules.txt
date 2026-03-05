@@ -1,0 +1,69 @@
+Photonics Mask Design Rules with Example Values 
+
+1. Minimum distance between two objects 
+Ensures shapes do not get too close. 
+Rule value:
+Minimum spacing = 0.20 µ
+2. Curvy structure check (avoid false errors) 
+Ensures polygon approximation of curves does not trigger false DRC violations. 
+Tolerance values: 
+Polygon tolerance = 0.01 µm 
+Ignore notches smaller than 0.03 µm 
+3. Minimum feature size 
+Ensures shapes are not smaller than lithography limits. 
+Rule value: 
+Minimum feature size = 0.10 µ
+4. Minimum waveguide width 
+Ensures waveguides can be fabricated and remain single-mode. 
+Rule value: 
+Minimum waveguide width = 0.45 µ
+5. Maximum waveguide width 
+Prevents unintended multimode behavior. 
+Rule value: 
+Maximum waveguide width = 2.0 µ
+6. Minimum waveguide spacing 
+Ensures two waveguides are not too close. 
+Rule value: 
+Minimum waveguide spacing = 0.30 µ
+7. Minimum radius of ring 
+Ensures ring resonators are not too small. 
+Rule value: 
+Minimum ring radius = 5 µ
+8. Minimum radius of waveguide bend 
+Prevents high optical loss in bends. 
+Rule value: 
+Minimum waveguide bend radius = 10 µm 
+9. Multi-layer rules (spatial relationship between layers) 
+Example constraints: 
+Slab must extend beyond waveguide by 0.10 µm 
+Metal must be at least 2.0 µm away from optical cor
+10. Enclosure rules 
+Ensures one layer surrounds another. 
+Example: 
+Metal enclosure around via ≥ 0.10 µm 
+11. Overlap rules 
+Ensures layers only overlap where allowed. 
+Example: 
+Forbidden overlap tolerance = 0 µm 
+(or require minimum spacing 0.20 µm instead) 
+12. Connection validation 
+Ensures connections between components are correct. 
+Example values: 
+Minimum connection overlap = 0.05 µm 
+Maximum allowed gap at connection = 0 µm 
+13. Intersection checking 
+Detects illegal intersections. 
+Example: 
+Intersection area must be 0 µm² (not allowed) 
+or enforce 
+Minimum spacing between layers = 0.20 µm 
+14. Angle check (no sharp bending) 
+Ensures waveguide bends are smooth. 
+Example rule: 
+Minimum internal angle = 135° 
+or
+Minimum corner rounding radius = 1 µm 
+15. Exclusion rules 
+Defines areas where shapes cannot appear. 
+Example: 
+Keep-out margin from exclusion region = 0.20 µm 
