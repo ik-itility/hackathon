@@ -1,0 +1,171 @@
+<mxfile host="app.diagrams.net" modified="2024-03-05T00:00:00.000Z" agent="5.0" version="21.0.0">
+  <diagram name="AWS-GDS-DRC-Architecture" id="aws-architecture">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="AWS Photonics GDS DRC System Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="320" y="20" width="520" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Designer -->
+        <mxCell id="designer" value="Designer" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="100" width="40" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Ingestion Layer -->
+        <mxCell id="ingestion-layer" value="INGESTION LAYER" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;verticalAlign=top;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="200" y="80" width="200" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="s3-uploads" value="Amazon S3&#xa;gds-uploads/" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.bucket;" vertex="1" parent="1">
+          <mxGeometry x="250" y="110" width="100" height="75" as="geometry" />
+        </mxCell>
+        
+        <!-- Arrow from Designer to S3 -->
+        <mxCell id="arrow1" value="Upload GDS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="designer" target="s3-uploads">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Orchestration Layer -->
+        <mxCell id="orchestration-layer" value="ORCHESTRATION LAYER" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;verticalAlign=top;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="200" y="240" width="200" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="step-functions" value="AWS Step Functions&#xa;DRC Orchestrator" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.step_functions;" vertex="1" parent="1">
+          <mxGeometry x="250" y="270" width="100" height="78" as="geometry" />
+        </mxCell>
+        
+        <!-- Arrow from S3 to Step Functions -->
+        <mxCell id="arrow2" value="S3 Event" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="s3-uploads" target="step-functions">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Agent Layer -->
+        <mxCell id="agent-layer" value="AGENT LAYER" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="400" width="840" height="160" as="geometry" />
+        </mxCell>
+        
+        <!-- Agent 1 -->
+        <mxCell id="agent1" value="AGENT 1&#xa;File Reader" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.lambda_function;" vertex="1" parent="1">
+          <mxGeometry x="150" y="440" width="78" height="78" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="agent1-desc" value="• Read GDS from S3&#xa;• Parse with KLayout&#xa;• Extract metadata" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="130" y="520" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Agent 2 -->
+        <mxCell id="agent2" value="AGENT 2&#xa;DRC Validator" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.lambda_function;" vertex="1" parent="1">
+          <mxGeometry x="400" y="440" width="78" height="78" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="agent2-desc" value="• Load rules&#xa;• Run DRC checks&#xa;• Generate reports" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="380" y="520" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Agent 3 -->
+        <mxCell id="agent3" value="AGENT 3&#xa;Auto-Fixer&#xa;(Future)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.lambda_function;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="680" y="440" width="78" height="78" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="agent3-desc" value="• AI-powered fixes&#xa;• Use Bedrock&#xa;• Generate corrected GDS" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="520" width="140" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Arrows between agents -->
+        <mxCell id="arrow3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="step-functions" target="agent1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="380" />
+              <mxPoint x="189" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="agent1" target="agent2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow5" value="If violations" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" edge="1" parent="1" source="agent2" target="agent3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- AI/ML Layer -->
+        <mxCell id="ai-layer" value="AI/ML SERVICES" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;verticalAlign=top;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="520" y="240" width="400" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="bedrock" value="Amazon Bedrock&#xa;Claude Sonnet 4" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#01A88D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.bedrock;" vertex="1" parent="1">
+          <mxGeometry x="560" y="270" width="78" height="78" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="kb" value="Bedrock&#xa;Knowledge Base" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#01A88D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.bedrock;" vertex="1" parent="1">
+          <mxGeometry x="780" y="270" width="78" height="78" as="geometry" />
+        </mxCell>
+        
+        <!-- Arrow from Agent 3 to Bedrock -->
+        <mxCell id="arrow6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" edge="1" parent="1" source="agent3" target="bedrock">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="719" y="420" />
+              <mxPoint x="599" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Storage Layer -->
+        <mxCell id="storage-layer" value="STORAGE LAYER" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;verticalAlign=top;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="600" width="840" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="s3-processed" value="S3&#xa;Processed" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.bucket;" vertex="1" parent="1">
+          <mxGeometry x="150" y="630" width="60" height="62" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="dynamodb" value="DynamoDB&#xa;Results" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#C925D1;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.dynamodb;" vertex="1" parent="1">
+          <mxGeometry x="409" y="630" width="60" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="s3-fixed" value="S3&#xa;Fixed GDS" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.bucket;opacity=60;" vertex="1" parent="1">
+          <mxGeometry x="689" y="630" width="60" height="62" as="geometry" />
+        </mxCell>
+        
+        <!-- Arrows to storage -->
+        <mxCell id="arrow7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="agent2" target="dynamodb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" edge="1" parent="1" source="agent3" target="s3-fixed">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Notification -->
+        <mxCell id="sns" value="Amazon SNS&#xa;Notifications" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.sns;" vertex="1" parent="1">
+          <mxGeometry x="270" y="740" width="60" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="dynamodb" target="sns">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="439" y="720" />
+              <mxPoint x="300" y="720" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Monitoring -->
+        <mxCell id="cloudwatch" value="CloudWatch&#xa;Monitoring" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.cloudwatch;" vertex="1" parent="1">
+          <mxGeometry x="680" y="740" width="60" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="xray" value="AWS X-Ray&#xa;Tracing" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.x_ray;" vertex="1" parent="1">
+          <mxGeometry x="820" y="740" width="60" height="60" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

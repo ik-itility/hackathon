@@ -1,0 +1,15 @@
+# Photonics Mask Design Rules - From rules.txt
+# Rule 6: Minimum waveguide spacing = 0.30 µm
+
+rules:
+  - name: "min_waveguide_spacing_1003"
+    layer: [1003, 0]
+    check: "space"
+    min_value_nm: 300
+    description: "Minimum waveguide spacing = 0.30 µm (Rule 6) - Layer 1003/0"
+
+  - name: "min_waveguide_spacing_10"
+    layer: [10, 0]
+    check: "space"
+    min_value_nm: 300
+    description: "Minimum waveguide spacing = 0.30 µm (Rule 6) - Layer 10/0 (routes)"

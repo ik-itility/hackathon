@@ -1,0 +1,227 @@
+<mxfile host="app.diagrams.net" modified="2024-03-05T15:05:00.000Z" agent="5.0" version="24.0.0">
+  <diagram name="Complete DRC System Architecture" id="complete-drc-system">
+    <mxGraphModel dx="1422" dy="827" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="Multi-Agent DRC System - Complete Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="400" y="10" width="600" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Mode 1: Auto-Watch -->
+        <mxCell id="mode1-box" value="Mode 1: Auto-Watch (Automatic)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;verticalAlign=top;align=left;strokeWidth=2" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="420" height="380" as="geometry" />
+        </mxCell>
+        
+        <!-- GDS Files Folder -->
+        <mxCell id="gds-folder" value="📁 gds-files/&lt;br&gt;(Monitored Folder)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="80" y="110" width="160" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- New File Event -->
+        <mxCell id="new-file" value="⚡ New .gds file&lt;br&gt;created/copied" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="280" y="120" width="140" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-watch1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;" edge="1" parent="1" source="gds-folder" target="new-file">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Auto-Watch Orchestrator -->
+        <mxCell id="auto-watch" value="🤖 Auto-Watch Orchestrator&lt;br&gt;(Watchdog File Monitor)&lt;br&gt;&lt;br&gt;Detects new files&lt;br&gt;Triggers processing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="80" y="210" width="340" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-watch2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1" source="new-file" target="auto-watch">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Multi-Agent System Box -->
+        <mxCell id="multi-agent-box1" value="Multi-Agent DRC System" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;fontStyle=1;verticalAlign=top" vertex="1" parent="1">
+          <mxGeometry x="80" y="320" width="340" height="110" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-watch3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;dashed=1;" edge="1" parent="1" source="auto-watch" target="multi-agent-box1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="agent1" value="Parser" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="100" y="350" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="agent2" value="Checker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="200" y="350" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="agent3" value="Reporter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="300" y="350" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Mode 2: Manual -->
+        <mxCell id="mode2-box" value="Mode 2: Manual (On-Demand)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;verticalAlign=top;align=left;strokeWidth=2" vertex="1" parent="1">
+          <mxGeometry x="500" y="70" width="420" height="380" as="geometry" />
+        </mxCell>
+        
+        <!-- User Command -->
+        <mxCell id="user-cmd" value="👤 User Command&lt;br&gt;uv run agents/&lt;br&gt;strands_orchestrator.py" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="540" y="110" width="160" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- Strands Orchestrator -->
+        <mxCell id="strands-orch" value="🎯 Strands Orchestrator&lt;br&gt;(Bedrock Nova Pro)&lt;br&gt;&lt;br&gt;Coordinates agents&lt;br&gt;Natural language workflow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="540" y="210" width="340" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-manual1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;" edge="1" parent="1" source="user-cmd" target="strands-orch">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Multi-Agent System Box 2 -->
+        <mxCell id="multi-agent-box2" value="Multi-Agent DRC System" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=10;fontStyle=1;verticalAlign=top" vertex="1" parent="1">
+          <mxGeometry x="540" y="320" width="340" height="110" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-manual2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;dashed=1;" edge="1" parent="1" source="strands-orch" target="multi-agent-box2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="agent4" value="Parser&lt;br&gt;Agent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="560" y="350" width="80" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="agent5" value="Checker&lt;br&gt;Agent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="660" y="350" width="80" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="agent6" value="Reporter&lt;br&gt;Agent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="760" y="350" width="80" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Mode 3: Legacy -->
+        <mxCell id="mode3-box" value="Mode 3: Legacy (Monolithic)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;verticalAlign=top;align=left;strokeWidth=2" vertex="1" parent="1">
+          <mxGeometry x="960" y="70" width="380" height="380" as="geometry" />
+        </mxCell>
+        
+        <!-- User Command Legacy -->
+        <mxCell id="user-cmd-legacy" value="👤 User Command&lt;br&gt;python3 agents/&lt;br&gt;drc_agent.py" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1000" y="110" width="140" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- Monolithic Agent -->
+        <mxCell id="mono-agent" value="⚙️ Monolithic DRC Agent&lt;br&gt;(No AI - Direct Processing)&lt;br&gt;&lt;br&gt;• GDS Reader&lt;br&gt;• DRC Engine&lt;br&gt;• Report Generator&lt;br&gt;&lt;br&gt;All-in-one class" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;align=left" vertex="1" parent="1">
+          <mxGeometry x="1000" y="210" width="300" height="140" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-legacy1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#f8cecc;strokeColor=#b85450;" edge="1" parent="1" source="user-cmd-legacy" target="mono-agent">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Output Reports (Common) -->
+        <mxCell id="output-box" value="📊 Output Reports" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;verticalAlign=top" vertex="1" parent="1">
+          <mxGeometry x="40" y="490" width="1300" height="120" as="geometry" />
+        </mxCell>
+        
+        <!-- Arrows to output -->
+        <mxCell id="arrow-out1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1" source="multi-agent-box1" target="output-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-out2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1" source="multi-agent-box2" target="output-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-out3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="1" source="mono-agent" target="output-box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Output Files -->
+        <mxCell id="json-report" value="📄 JSON Report&lt;br&gt;design_drc_report.json&lt;br&gt;(Machine-readable)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="80" y="530" width="180" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="txt-report" value="📄 Text Report&lt;br&gt;design_drc_report.txt&lt;br&gt;(Human-readable)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="300" y="530" width="180" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="violations" value="⚠️ Violations Summary&lt;br&gt;• Rule violations&lt;br&gt;• Locations&lt;br&gt;• Severity levels" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;align=left" vertex="1" parent="1">
+          <mxGeometry x="520" y="530" width="180" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="pass-fail" value="✅ PASS / ❌ FAIL&lt;br&gt;Status indicator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="740" y="530" width="140" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Technology Stack -->
+        <mxCell id="tech-box" value="Technology Stack" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;fontStyle=1;verticalAlign=top;align=left" vertex="1" parent="1">
+          <mxGeometry x="40" y="650" width="1300" height="200" as="geometry" />
+        </mxCell>
+        
+        <!-- Tech Components -->
+        <mxCell id="tech1" value="🧠 Amazon Bedrock&lt;br&gt;Nova Pro LLM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="80" y="690" width="140" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="tech2" value="🔧 Strands SDK&lt;br&gt;Multi-agent framework" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="240" y="690" width="140" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="tech3" value="📦 KLayout&lt;br&gt;GDS file processing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="400" y="690" width="140" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="tech4" value="👁️ Watchdog&lt;br&gt;File monitoring" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="560" y="690" width="140" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="tech5" value="📋 PyYAML&lt;br&gt;Rules configuration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="720" y="690" width="140" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="tech6" value="🐍 Python 3.12+&lt;br&gt;Runtime" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="880" y="690" width="140" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="tech7" value="☁️ AWS&lt;br&gt;Cloud infrastructure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="1040" y="690" width="140" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Comparison Table -->
+        <mxCell id="compare-title" value="Mode Comparison" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="80" y="760" width="120" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="comp1" value="Auto-Watch: Automatic, continuous monitoring" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="80" y="785" width="300" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="comp2" value="Manual: On-demand, AI-powered reasoning" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="80" y="805" width="300" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="comp3" value="Legacy: Fast, no AI, backward compatible" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="80" y="825" width="300" height="15" as="geometry" />
+        </mxCell>
+        
+        <!-- Commands -->
+        <mxCell id="cmd-title" value="Quick Commands" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="500" y="760" width="120" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="cmd1" value="Auto: uv run agents/auto_watch_orchestrator.py" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontFamily=Courier New" vertex="1" parent="1">
+          <mxGeometry x="500" y="785" width="400" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="cmd2" value="Manual: uv run agents/strands_orchestrator.py" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontFamily=Courier New" vertex="1" parent="1">
+          <mxGeometry x="500" y="805" width="400" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="cmd3" value="Legacy: python3 agents/drc_agent.py" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontFamily=Courier New" vertex="1" parent="1">
+          <mxGeometry x="500" y="825" width="400" height="15" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

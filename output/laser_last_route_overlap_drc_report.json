@@ -1,0 +1,28 @@
+{
+  "file": "/workshop/hackathon/gds-files/laser_last_route_overlap.gds",
+  "timestamp": "2026-03-05T15:03:43.350249",
+  "total_violations": 3,
+  "violations": [
+    {
+      "rule": "min_waveguide_spacing_10",
+      "description": "Minimum waveguide spacing = 0.30 \u00b5m (Rule 6) - Layer 10/0 (routes)",
+      "layer": "10/0",
+      "count": 3,
+      "severity": "WARNING",
+      "locations": [
+        {
+          "x": 920.618,
+          "y": 150.019
+        },
+        {
+          "x": 920.618,
+          "y": 179.988
+        },
+        {
+          "x": 1215.618,
+          "y": 180.019
+        }
+      ]
+    }
+  ]
+}

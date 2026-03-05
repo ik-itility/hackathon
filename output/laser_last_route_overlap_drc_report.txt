@@ -1,0 +1,20 @@
+============================================================
+PHOTONICS GDS DRC REPORT
+============================================================
+
+File: /workshop/hackathon/gds-files/laser_last_route_overlap.gds
+Date: 2026-03-05 15:03:43
+
+Total Violations: 3
+
+VIOLATIONS:
+------------------------------------------------------------
+
+[WARNING] min_waveguide_spacing_10
+  Description: Minimum waveguide spacing = 0.30 µm (Rule 6) - Layer 10/0 (routes)
+  Layer: 10/0
+  Count: 3
+  Sample locations:
+    - (920.618, 150.019) µm
+    - (920.618, 179.988) µm
+    - (1215.618, 180.019) µm
