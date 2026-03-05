@@ -1,0 +1,15 @@
+{
+  "layer_mapping": {
+    "1": "waveguide_core",
+    "2": "slab",
+    "3": "metal",
+    "4": "via",
+    "5": "exclusion_zone"
+  },
+  "component_library": {
+    "waveguide": {"layers": [1, 2], "min_width": 0.45, "max_width": 2.0},
+    "ring_resonator": {"layers": [1], "min_radius": 5.0},
+    "bend": {"layers": [1], "min_radius": 10.0},
+    "coupler": {"layers": [1], "min_gap": 0.30}
+  }
+}
