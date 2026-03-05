@@ -1,0 +1,7 @@
+# Code Quality Rules
+
+1. All functions must have docstrings
+2. No unused imports
+3. Variable names must be descriptive (min 3 characters)
+4. No hardcoded credentials or secrets
+5. All functions must have type hints
