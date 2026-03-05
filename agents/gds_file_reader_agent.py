@@ -17,43 +17,54 @@ class GDSFileReaderAgent:
         if not key.endswith('.gds'):
             return {'status': 'skipped', 'reason': 'Not a GDS file'}
         
-        # Download GDS file to temp location
+        # Handle local files (bucket == 'local')
+        if bucket == 'local':
+            return self._read_local_file(key)
+        
+        # Download GDS file from S3 to temp location
         with tempfile.NamedTemporaryFile(delete=False, suffix='.gds') as tmp:
             self.s3_client.download_fileobj(bucket, key, tmp)
             tmp_path = tmp.name
         
         try:
-            # Read GDS file
-            library = gdstk.read_gds(tmp_path)
-            
-            # Extract all cells and polygons
-            cells_data = []
-            for cell in library.cells:
-                polygons = []
-                for polygon in cell.polygons:
-                    polygons.append({
-                        'layer': polygon.layer,
-                        'points': polygon.points.tolist(),
-                        'area': polygon.area()
-                    })
-                
-                cells_data.append({
-                    'name': cell.name,
-                    'polygon_count': len(polygons),
-                    'polygons': polygons
-                })
-            
-            return {
-                'status': 'success',
-                'bucket': bucket,
-                'key': key,
-                'library_name': library.name,
-                'cells': cells_data,
-                'trigger_validation': True
-            }
-        
+            return self._read_gds_file(tmp_path, bucket, key)
         finally:
             os.unlink(tmp_path)
+    
+    def _read_local_file(self, filepath: str) -> Dict[str, Any]:
+        """Read GDS file from local filesystem"""
+        return self._read_gds_file(filepath, 'local', filepath)
+    
+    def _read_gds_file(self, tmp_path: str, bucket: str, key: str) -> Dict[str, Any]:
+        """Read and parse GDS file"""
+        # Read GDS file
+        library = gdstk.read_gds(tmp_path)
+        
+        # Extract all cells and polygons
+        cells_data = []
+        for cell in library.cells:
+            polygons = []
+            for polygon in cell.polygons:
+                polygons.append({
+                    'layer': polygon.layer,
+                    'points': polygon.points.tolist(),
+                    'area': polygon.area()
+                })
+            
+            cells_data.append({
+                'name': cell.name,
+                'polygon_count': len(polygons),
+                'polygons': polygons
+            })
+        
+        return {
+            'status': 'success',
+            'bucket': bucket,
+            'key': key,
+            'library_name': library.name,
+            'cells': cells_data,
+            'trigger_validation': True
+        }
 
 if __name__ == '__main__':
     sample_event = {
